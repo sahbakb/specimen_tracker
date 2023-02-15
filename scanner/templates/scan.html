@@ -2,7 +2,38 @@
 
 {% block content %}
 
-<h1>Scan page</h1>
+
+    
+    <h3>{{rack.name}},{{rack.sample_type}}</h3>
+    <br>
+
+    <form method="POST">
+        {% csrf_token %}
+    <div class="row">
+        {% if available_spots%}
+        {% for i in available_spots %}    
+        
+            <div class="col-sm-2">            
+            <input type="text" id="{{i}}" name="{{i}}" class="form-control" placeholder="{{i}}" aria-placeholder="">
+            </div>
+            <br><br>
+            
+    
+        {% endfor %}
+        {% else %}
+        <P>No Spot Available</P>
+        {%endif%}
+
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    </form>
+</div>
+
+
+
+
+
 
 {% endblock  %}     
 
