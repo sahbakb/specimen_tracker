@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="mt-4 p-5 bg-dark text-white  rounded">
+    <h5>Name: {{rack.name}} </h5>
+    <h5>Sample Type: {{rack.sample_type}}</h5>
+    <h5>Rack Size: {{rack.rack_size}} </h5>
+    <h5>available_spots: {{rack.get_available_spots}} </h5>
+ 
+    {% if rack.full %}
+    <button type="submit" class="btn btn-danger">Empty Rack</button>
+    {% elif rack.get_available_spots == rack.rack_size %}
+    <button type="submit" class="btn btn-primary">Scan</button>
+    {% else %}
+    <button type="submit" class="btn btn-danger">Empty Rack</button>
+    <button type="submit" class="btn btn-primary">Scan</button>
+    {% endif %}
+  </div>
+
+<table class="table table-striped">
+    <thead>
+        <th>Sample ID</th>
+        <th>Location</th>
+        <th>Time Scanned</th>
+    </thead>
+    <tbody>
+        {% for sample in samples %}
+            <tr>
+                <td>{{sample.sid}}</td>
+                <td>{{sample.location}}</td>
+                <td>{{sample.time_scanned}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+{% endblock %}

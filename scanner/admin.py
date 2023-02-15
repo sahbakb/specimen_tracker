@@ -10,7 +10,8 @@ class SampleTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Sample)
 class SampleAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['sid', 'rack', 'location', 'time_scanned']
+    list_filter = ['rack','time_scanned']
 
 
 @admin.register(Rack)

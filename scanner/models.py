@@ -13,8 +13,9 @@ class Rack(models.Model):
     rack_size = models.IntegerField(default=72, null=False, blank=False)
     next_available_position = models.IntegerField(default=1)
     full = models.BooleanField(default=False)
+    
     def __str__(self):
-        return self.name
+        return f"{self.name},{self.sample_type}"
     
     def get_available_spots(self):
         return self.rack_size - self.next_available_position +1

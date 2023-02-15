@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import Rack,Sample
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
@@ -42,3 +43,14 @@ def search(request):
     return render(request, 'search.html')
 
 
+class RackListView(ListView):
+    model= Rack
+    template_name= 'rack_list.html'
+    context_object_name = 'racks'
+    
+def rackDetailView(request, pk):
+    rack = Rack.objects.get(id=pk)
+    samples = rack.sample_set.all()
+    context={"rack":rack, 'samples':samples}
+    return render(request, template_name='rack_detail.html', context=context)
+    
