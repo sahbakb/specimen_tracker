@@ -12,10 +12,10 @@
     {% if rack.full %}
     <button type="submit" class="btn btn-danger">Empty Rack</button>
     {% elif rack.get_available_spots == rack.rack_size %}
-    <button type="submit" class="btn btn-primary">Scan</button>
+    <a type="submit" href="{% url 'scan' pk=rack.pk %}" class="btn btn-primary">Scan</a>
     {% else %}
-    <button type="submit" class="btn btn-danger">Empty Rack</button>
-    <button type="submit" class="btn btn-primary">Scan</button>
+    <a type="submit" href="{% url 'empty_rack' pk=rack.pk %}" class="btn btn-danger">Empty Rack</a>
+    <a type="submit" href="{% url 'scan' pk=rack.pk %}" class="btn btn-primary">Scan</a>
     {% endif %}
   </div>
 

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="mt-4 p-5 bg-dark text-white  rounded">
+
+<h2>Warning!!!</h2>
+<h4>Delete rack {{rack.name}}?</h4>
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Delete">
+    <a class="btn btn-secondary" href="{% url 'racks_list' %}">Cancel</a>
+</form>
+</div>
+{% endblock %}

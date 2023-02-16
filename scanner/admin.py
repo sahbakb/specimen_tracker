@@ -11,9 +11,10 @@ class SampleTypeAdmin(admin.ModelAdmin):
 @admin.register(Sample)
 class SampleAdmin(admin.ModelAdmin):
     list_display = ['sid', 'rack', 'location', 'time_scanned']
-    list_filter = ['rack','time_scanned']
+    list_filter = ['rack', 'time_scanned']
 
 
 @admin.register(Rack)
 class RackAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'sample_type',
+                    'rack_size', Rack.get_available_spots, 'full']
