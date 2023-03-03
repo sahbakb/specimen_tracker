@@ -3,5 +3,40 @@
 {% block content %}
 
 <h1>search page</h1>
+<br>
+<form method="POST">
+    {% csrf_token %}
+    <label class="form-label" for="sid">Sample ID</label>
+    <input type="text" class="form-control" id="sid" name="sid" autofocus>
+    <br>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <th>Sample ID</th>
+        <th>Rack</th>
+        <th>Sample Type</th>
+        <th>Location</th>
+        <th>Time Scanned</th>
+    </thead>
+    <tbody>
+        {% for sample in samples%}
+        <tr>
+            <td>{{sample.sid}}</td>
+            <td>{{sample.rack}}</td>
+            <td>{{sample.rack.sample_type}}</td>
+            <td>{{sample.location}}</td>
+            <td>{{sample.time_scanned}}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+
+</table>
+
+
+   
 
 {% endblock %}

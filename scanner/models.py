@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 
@@ -11,6 +12,7 @@ class SampleType(models.Model):
 
 
 class Rack(models.Model):
+    
     name = models.CharField(max_length=50, unique=True,
                             null=False, blank=False)
     sample_type = models.ForeignKey(SampleType, on_delete=models.CASCADE)
@@ -22,9 +24,7 @@ class Rack(models.Model):
         return f"{self.name}"
 
     def get_available_spots(self):
-
         return self.rack_size - self.next_available_position + 1
-
     get_available_spots.short_description = "available_spots"
 
 

@@ -39,7 +39,13 @@ def scan(request, pk):
 
 
 def search(request):
-    return render(request, 'search.html')
+    if request.method == 'POST':
+        req = request.POST
+        samples = Sample.objects.filter(sid=req["sid"])
+        context = {'samples': samples}
+    else:
+        context = {}
+    return render(request, 'search.html', context=context)
 
 
 class RackListView(ListView):
