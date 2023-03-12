@@ -20,7 +20,7 @@ def scan(request, pk):
 
     if request.method == 'POST':
         req = request.POST
-        
+        print(req)
         for i in available_spots:
             if req[str(i)] != '':
                 s = Sample()
@@ -28,11 +28,12 @@ def scan(request, pk):
 
                 s.location = i
                 s.rack = rack
-                rack.next_available_position = rack.next_available_position + 1
+                rack.next_available_position = i + 1
                 if rack.next_available_position > rack.rack_size:
                     rack.full = True
-                elif req["close"] == 'on':
+                elif 'close' in req:
                     rack.full = True
+
                 s.save()
                 rack.save()
 
@@ -70,6 +71,7 @@ def empty_rack(request, pk):
     if request.method == "POST":
         samples.delete()
         rack.next_available_position = 1
+        rack.full = False
         rack.save()
         return redirect('racks_list')
     else:
