@@ -10,7 +10,7 @@
     <h5>available_spots: {{rack.get_available_spots}} </h5>
  
     {% if rack.full %}
-    <button type="submit" class="btn btn-danger">Empty Rack</button>
+    <a type="submit" href="{% url 'empty_rack' pk=rack.pk %}" class="btn btn-danger">Empty Rack</a>
     {% elif rack.get_available_spots == rack.rack_size %}
     <a type="submit" href="{% url 'scan' pk=rack.pk %}" class="btn btn-primary">Scan</a>
     {% else %}

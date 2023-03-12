@@ -7,6 +7,7 @@
 <table class="table table-striped">
     <thead>
         <th>Rack Name </th>
+        <th>Day</th>
         <th>Sample Type</th>
         <th>Rack Size</th>
         <th>Remaining Spots</th>
@@ -15,6 +16,7 @@
         {% for rack in racks %}
             <tr>
                 <td><a href="{% url 'scan' pk=rack.pk %}">{{rack.name}}</a></td>
+                <td>{{rack.day}}</td>
                 <td>{{rack.sample_type}}</td>
                 <td>{{rack.rack_size}}</td>
                 <td>{{rack.get_available_spots}}</td>
